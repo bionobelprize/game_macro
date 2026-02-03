@@ -80,7 +80,7 @@ class MacroGUI:
         self.hotkey_entry.pack(side=tk.LEFT, fill=tk.X, expand=True)
         # Add help text with examples
         hotkey_help = ttk.Label(details_frame, text="Examples: alt+1, ctrl+shift+2, f1", 
-                               font=('Arial', 8), foreground='gray')
+                               font=('Arial', 8, 'italic'))
         hotkey_help.grid(row=1, column=2, sticky=tk.W, padx=5)
         
         # Speed
@@ -387,20 +387,13 @@ class MacroGUI:
         
         hotkey = hotkey.strip().lower()
         
-        # Check for valid characters
-        valid_modifiers = ['ctrl', 'alt', 'shift', 'win', 'cmd']
-        valid_separators = ['+', ' ']
-        
         # Split by + to get key parts
         parts = [p.strip() for p in hotkey.split('+')]
         
-        if len(parts) == 0:
-            return False, "Hotkey cannot be empty"
-        
-        # Validate each part
+        # Validate each part is not empty
         for part in parts:
             if not part:
-                return False, "Invalid hotkey format (empty part)"
+                return False, "Invalid hotkey format (empty part after +)"
         
         # Examples of valid hotkeys: 
         # - Single keys: a, 1, f1, space, enter
