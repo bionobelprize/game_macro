@@ -278,7 +278,7 @@ class MacroGUI:
             if macro.get('hotkey'):
                 try:
                     keyboard.remove_hotkey(macro['hotkey'])
-                except:
+                except (KeyError, ValueError):
                     pass
             
             del self.macros[self.current_macro]
@@ -383,7 +383,7 @@ class MacroGUI:
             # Remove existing hotkey if any
             try:
                 keyboard.remove_hotkey(hotkey)
-            except:
+            except (KeyError, ValueError):
                 pass
             
             # Register new hotkey
