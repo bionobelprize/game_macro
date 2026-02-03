@@ -74,8 +74,14 @@ class MacroGUI:
         
         # Hotkey
         ttk.Label(details_frame, text="Hotkey:").grid(row=1, column=0, sticky=tk.W, pady=5)
-        self.hotkey_entry = ttk.Entry(details_frame, width=30)
-        self.hotkey_entry.grid(row=1, column=1, sticky=(tk.W, tk.E), pady=5, padx=5)
+        hotkey_container = ttk.Frame(details_frame)
+        hotkey_container.grid(row=1, column=1, sticky=(tk.W, tk.E), pady=5, padx=5)
+        self.hotkey_entry = ttk.Entry(hotkey_container, width=30)
+        self.hotkey_entry.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        # Add help text with examples
+        hotkey_help = ttk.Label(details_frame, text="Examples: alt+1, ctrl+shift+2, f1", 
+                               font=('Arial', 8, 'italic'))
+        hotkey_help.grid(row=1, column=2, sticky=tk.W, padx=5)
         
         # Speed
         ttk.Label(details_frame, text="Playback Speed:").grid(row=2, column=0, sticky=tk.W, pady=5)
@@ -374,9 +380,41 @@ class MacroGUI:
             except ValueError:
                 pass
     
+    def validate_hotkey(self, hotkey):
+        """Validate hotkey format and check if it's supported"""
+        if not hotkey or not hotkey.strip():
+            return True, ""  # Empty is valid (no hotkey)
+        
+        hotkey = hotkey.strip().lower()
+        
+        # Split by + to get key parts
+        parts = [p.strip() for p in hotkey.split('+')]
+        
+        # Validate each part is not empty
+        for part in parts:
+            if not part:
+                return False, "Invalid hotkey format (empty part after +)"
+        
+        # Examples of valid hotkeys: 
+        # - Single keys: a, 1, f1, space, enter
+        # - Combinations: ctrl+a, alt+1, ctrl+shift+f1
+        # The keyboard library is quite permissive, so we just check basic format
+        
+        return True, ""
+    
     def register_hotkey(self, macro_name, hotkey):
         """Register a hotkey for a macro"""
         if not hotkey:
+            return
+        
+        # Validate hotkey format
+        is_valid, error_msg = self.validate_hotkey(hotkey)
+        if not is_valid:
+            error_detail = f"Invalid hotkey format: {error_msg}\n\n"
+            error_detail += "Valid formats:\n"
+            error_detail += "- Single keys: a, 1, f1, space\n"
+            error_detail += "- Combinations: alt+1, ctrl+shift+2, ctrl+alt+f1"
+            messagebox.showerror("Invalid Hotkey", error_detail)
             return
         
         try:
@@ -402,7 +440,15 @@ class MacroGUI:
             keyboard.add_hotkey(hotkey, play_callback)
             self.status_var.set(f"Registered hotkey '{hotkey}' for {macro_name}")
         except Exception as e:
-            messagebox.showerror("Hotkey Error", f"Failed to register hotkey: {e}")
+            error_detail = f"Failed to register hotkey '{hotkey}': {str(e)}\n\n"
+            error_detail += "Common issues:\n"
+            error_detail += "- The hotkey may already be in use by another application\n"
+            error_detail += "- Some key names may not be recognized\n"
+            error_detail += "- Try using standard modifiers: ctrl, alt, shift\n\n"
+            error_detail += "Valid examples:\n"
+            error_detail += "- alt+1, ctrl+1, shift+f1\n"
+            error_detail += "- ctrl+shift+a, ctrl+alt+2"
+            messagebox.showerror("Hotkey Registration Error", error_detail)
     
     def register_all_hotkeys(self):
         """Register hotkeys for all macros"""

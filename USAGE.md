@@ -71,10 +71,27 @@ Use the speed slider to control playback:
 
 ## Hotkey Examples
 
+### Basic Single Keys
+- `1`, `2`, `3` - Number keys
+- `a`, `b`, `c` - Letter keys
+- `f1`, `f2`, `f3` - Function keys
+
+### Modifier + Key Combinations (Recommended)
+- `alt+1`, `alt+2`, `alt+3` - Alt with numbers
+- `ctrl+1`, `ctrl+2`, `ctrl+3` - Ctrl with numbers
+- `shift+1`, `shift+2`, `shift+3` - Shift with numbers
+- `alt+a`, `alt+q`, `alt+e` - Alt with letters
+
+### Multiple Modifiers + Key
 - `ctrl+shift+1` - Combat macro 1
 - `ctrl+shift+2` - Combat macro 2
-- `alt+q` - Quick action
-- `f1`, `f2` - Function key macros
+- `ctrl+alt+1` - Special combo 1
+- `ctrl+alt+f1` - Advanced macro
+
+### Tips for Choosing Hotkeys
+- **Recommended**: Use combinations like `alt+1`, `ctrl+shift+2` to avoid conflicts
+- **Avoid**: Single keys (like just `1` or `a`) as they may conflict with normal typing
+- **Best Practice**: Test your hotkeys don't conflict with game/application shortcuts
 
 ## Troubleshooting
 

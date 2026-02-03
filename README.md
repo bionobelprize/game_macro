@@ -60,7 +60,7 @@ python macro_gui.py
 2. Click "Play Macro" button
 
 **Method 2: Using Hotkey**
-1. Assign a hotkey to your macro (e.g., "ctrl+shift+1")
+1. Assign a hotkey to your macro (e.g., "alt+1" or "ctrl+shift+2")
 2. Press the hotkey anywhere to trigger the macro
 
 ### Managing Macros
@@ -73,11 +73,20 @@ python macro_gui.py
 
 ### Hotkey Format
 
-Use combinations like:
-- `ctrl+shift+1`
-- `alt+a`
-- `ctrl+alt+p`
-- `f1`, `f2`, etc.
+The application supports flexible hotkey combinations. The GUI provides inline examples and validation.
+
+**Recommended combinations (avoid conflicts with normal use):**
+- `alt+1`, `alt+2`, `alt+3` - Alt + number keys
+- `ctrl+shift+1`, `ctrl+shift+2` - Multiple modifiers
+- `ctrl+alt+f1` - Modifiers + function key
+
+**Simple hotkeys:**
+- `f1`, `f2`, `f3` - Function keys
+- `1`, `2`, `a` - Single keys (may conflict with typing)
+
+**Advanced combinations:**
+- `ctrl+alt+p` - Multiple modifiers + letter
+- Any combination of: `ctrl`, `alt`, `shift`, `win`/`cmd` with letters, numbers, or special keys
 
 ## Configuration
 
