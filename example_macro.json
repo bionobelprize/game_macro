@@ -1,0 +1,58 @@
+[
+  {
+    "timestamp": 0.0,
+    "type": "mouse_move",
+    "data": {
+      "x": 500,
+      "y": 300
+    }
+  },
+  {
+    "timestamp": 0.5,
+    "type": "mouse_click",
+    "data": {
+      "x": 500,
+      "y": 300,
+      "button": "left",
+      "pressed": true
+    }
+  },
+  {
+    "timestamp": 0.6,
+    "type": "mouse_click",
+    "data": {
+      "x": 500,
+      "y": 300,
+      "button": "left",
+      "pressed": false
+    }
+  },
+  {
+    "timestamp": 1.0,
+    "type": "key_press",
+    "data": {
+      "key": "h"
+    }
+  },
+  {
+    "timestamp": 1.1,
+    "type": "key_release",
+    "data": {
+      "key": "h"
+    }
+  },
+  {
+    "timestamp": 1.3,
+    "type": "key_press",
+    "data": {
+      "key": "i"
+    }
+  },
+  {
+    "timestamp": 1.4,
+    "type": "key_release",
+    "data": {
+      "key": "i"
+    }
+  }
+]
